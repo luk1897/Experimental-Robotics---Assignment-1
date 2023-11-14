@@ -7,7 +7,7 @@
   <rosparam command="load" file="$(find assignment_1)/joint_state_controller.yaml" />
   <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller astra_joint_velocity_controller " />
 
-  <param name="robot_description" command="$(find xacro)/xacro '$(find assignment_1)/urdf/rosbot_cam.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find rosbot_description)/urdf/rosbot_cam.xacro'"/>
 
   <node name="rosbot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model rosbot_cam" />
 
