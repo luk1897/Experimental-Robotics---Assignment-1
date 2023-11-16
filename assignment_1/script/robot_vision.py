@@ -71,8 +71,8 @@ def img_cb(img_msg):
 def main():
 
        
-    rospy.Subscriber('/camera/color/image_raw', Image, img_cb)
-    rospy.Subscriber('/camera/color/camera_info', CameraInfo, camera_cb)
+    rospy.Subscriber('/camera/rgb/image_raw', Image, img_cb)
+    rospy.Subscriber('/camera/rgb/camera_info', CameraInfo, camera_cb)
     
     rospy.spin()
 
