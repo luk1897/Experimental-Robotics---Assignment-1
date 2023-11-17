@@ -24,7 +24,6 @@ marker_top_left = []
 marker_bottom_left = []
 marker_bottom_right = []
 
-r = 0
 
 def vision_cb(vision_msg):
 
