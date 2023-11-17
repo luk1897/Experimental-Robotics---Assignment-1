@@ -42,13 +42,13 @@ def vision_cb(vision_msg):
 
 def get_close_marker():
 
-    global vision_id, camera_center, marker_center, marker_top_right, marker_top_left, marker_bottom_left, marker_bottom_right, pub, state, id_marker, id_list, id_marker
+    global vision_id, camera_center, marker_center, marker_top_left, marker_bottom_left, pub, state, id_marker, id_list, id_marker
     
     target = 185
     
     velocity = Twist()
     
-    x_cord = marker_top_right[0] - marker_bottom_right[0]
+    x_cord = marker_top_left[0] - marker_bottom_left[0]
     y_cord = marker_top_left[1] - marker_bottom_left[1]
     
     side = np.sqrt(np.power(x_cord,2) + np.power(y_cord,2))
@@ -82,13 +82,8 @@ def search_marker():
     velocity = Twist()
     
     if(id_marker != vision_id):
-         #print("Looking for the right marker")
-         
-         print("id_mark: ", id_marker)
-         print("vision_id: ", vision_id)
-         
+         print("Looking for the right marker")
          velocity.angular.z = -0.4
-    
          pub.publish(velocity)
     else: 
          
