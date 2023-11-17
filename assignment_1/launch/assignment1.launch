@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <node name="robot_vision" pkg="assignment_1" type="robot_vision.py" output="screen"/>
+  
+  <node name="control" pkg="assignment_1" type="control.py"/>
+
+</launch>
