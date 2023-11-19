@@ -3,11 +3,11 @@
 ## IMPORTANT 
 
 In the simulation, the camera frame the side of the marker reached a maximum of 175 pixels because, by increasing the threshold, the camera was unable to detect the marker.
-Finally, after testing the code in simulation, our goal was to run it on the real robot. In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.
+In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.
 
 ## Project Goal
 
-Given four markers, the aim is to get the robot in front of them in such a way that the side of each marker is at least 175 pixels in the camera frame.
+Given four markers, the aim is to get the robot in front of them in such a way that the side of each marker is at least 175 pixels in the camera frame. Finally, after testing the code in simulation, our goal was to run it on the real robot.
 
 ## How to install and run
 
@@ -41,7 +41,7 @@ This is the entire environment in which we worked.
 
 This ROS node is used for getting the informations (height and width) regarding the camera (through /camera/color/camera_info topic) and the informations (id, center and corners) regarding the markers (through /camera/color/image_raw topic). In the main we set the subscribers.
 
-#### Camera_cb
+#### camera_cb
 
 ```python
 def camera_cb(camera_msg):
