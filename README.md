@@ -221,6 +221,7 @@ Function for allowing the robot to rotate until it finds the desired id marker.
 
 ## Outline of the assignment and the whole environment
 
+![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a7a052b5-3889-42d9-8acd-7c1102a4a1d7)
 
 
 
