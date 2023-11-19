@@ -5,13 +5,9 @@
 In the simulation, the camera frame the side of the marker reached a maximum of 175 pixels because, by increasing the threshold, the camera was unable to detect the marker.
 In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.I
 
-
-
 ## Project Goal
 
-Given a simulation, create an action client which gives the user the possibility to decide the robot's goal and which takes information from the topic /odom.
-Create a service node that returns how many times goals have been reached or cancelled.
-Create a node that takes the information taken from the first node and prints out the distance to goal and the average speed.
+Given four markers, the aim is to get the robot in front of them in such a way that the side of each marker is at least 175 pixels in the camera frame.
 
 ## How to install and run
 
