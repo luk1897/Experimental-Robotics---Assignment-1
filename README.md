@@ -201,6 +201,14 @@ def search_marker():
 ```
 Function for allowing the robot to rotate until it finds the desired id marker.
 
+## Messages
+
+### RobotVision.msg
+
+![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/ffdf61a3-5fe2-4dca-b9f1-2084d5ec7764)
+
+This message is fundamental to share the informations regarding the camera and the markers from robot_vision node to control node.
+
 ## Flowchart
 
 ## Outline of the assignment and the whole environment
