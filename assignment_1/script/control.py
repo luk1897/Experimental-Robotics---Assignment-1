@@ -90,7 +90,7 @@ def get_close_marker():
 
     global vision_id, camera_center, marker_center, marker_top_left, marker_bottom_left, pub, state, id_marker
     
-    target = 175    # marker side to reach
+    target = 185    # marker side to reach
     
     velocity = Twist()
     
