@@ -211,6 +211,7 @@ Function for allowing the robot to rotate until it finds the desired id marker.
 * The linear gain was reduced from 0.0025 to 0.002 in the real robot.
 * The angular velocity was reduced from -0.5 to -0.4 in the real robot.
 * Of course, there is no need for gazebo parts in the real robot.
+* The threshold to reach a marker was increased from 175 pixels to 185 pixels in the real robot.
 
 ## Results
 
