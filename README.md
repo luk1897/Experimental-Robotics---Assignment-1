@@ -3,7 +3,7 @@
 ## IMPORTANT 
 
 In the simulation, the camera frame the side of the marker reached a maximum of 175 pixels because, by increasing the threshold, the camera was unable to detect the marker.
-In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.I
+In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.
 
 ## Project Goal
 
