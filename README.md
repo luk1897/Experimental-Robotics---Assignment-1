@@ -1,7 +1,5 @@
 # Experimental-Robotics---Assignment-1
 
-# Experimental_Robotics - Assignment_1
-
 ## IMPORTANT 
 
 In the simulation, the camera frame the side of the marker reached a maximum of 175 pixels because, by increasing the threshold, the camera was unable to detect the marker.
