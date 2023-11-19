@@ -208,6 +208,9 @@ Function for allowing the robot to rotate until it finds the desired id marker.
 ![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a7a052b5-3889-42d9-8acd-7c1102a4a1d7)
 
 ## Differences between simulation and real robot
+* The linear gain was reduced from 0.0025 to 0.002 in the real robot.
+* The angular velocity was reduced from -0.5 to -0.4 in the real robot.
+* Of course, there is no need for gazebo parts in the real robot.
 
 ## Results
 
