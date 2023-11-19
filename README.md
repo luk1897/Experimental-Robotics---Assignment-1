@@ -21,8 +21,6 @@ You need to use Git. Run: ```sudo apt-get install git```
 
 Then run on your shell: ```git clone https://github.com/luk1897/Experimental_Robotics-Assignment_1```
 
-Then install xterm because it is used to check what the robot is doing. Run ```sudo apt-get install xterm```
-
 Finally, you need to have aruco in your pc. Run ```git clone https://github.com/CarmineD8/aruco_ros ```
 
 ### Run
