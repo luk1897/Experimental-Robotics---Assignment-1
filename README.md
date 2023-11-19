@@ -37,9 +37,9 @@ This is the entire environment in which we worked.
 
 ## Nodes
 
-### PLANNING CLIENT NODE
+### VISION NODE
 
-This node gives the user the possibility to decide the robot's goal and which takes information from the topic /odom.
+This node allows the robot to turn in search of the desired marker and then to reach it.
 
 #### Publish_function
 
@@ -127,86 +127,95 @@ def position():
 
 The function is useful for getting goal coordinates.
 
-#### Output 
 
-![client_console](https://user-images.githubusercontent.com/80416766/211173202-07822132-67b0-4e38-8657-f566f7a6d977.png)
+### Controller NODE
 
-### COUNTER NODE
+This node allows the robot to turn in search of the desired marker and then to reach it. The logic is implemented in the main.
 
-This is a service node that returns how many times goals have been reached or cancelled.
-
-#### Res_cb
+#### vision_cb
 
 ``` python
-def res_cb(res):
+def vision_cb(vision_msg):
 
-	global reach_counter, cancel_counter
-	
-	if(res.status.status==3):
-		reach_counter+=1
-	elif(res.status.status==2):
-		cancel_counter+=1
+    global vision_id, camera_center, marker_center, marker_top_right, marker_top_left, marker_bottom_left, marker_bottom_right, id_marker
+    
+    if(vision_msg.id == id_marker):
+    
+	    vision_id = vision_msg.id
+	    camera_center = vision_msg.camera_center
+	    marker_center = vision_msg.marker_center
+	    marker_top_right = vision_msg.marker_top_right
+	    marker_top_left = vision_msg.marker_top_left
+	    marker_bottom_left = vision_msg.marker_bottom_left
+	    marker_bottom_right = vision_msg.marker_bottom_right
 ``` 
-This function is used for computing how many goals are reached or cancelled.
+Function for getting information (id, camera center, marker center and corners) regarding markers from vision node.
 
-#### Count_printer
-
-``` python
-def count_printer(string):
-
-	return CounterResponse(reach_counter,cancel_counter) #
-```
-This function is useful for sending the response.
-
-#### Output
-
-![service_console](https://user-images.githubusercontent.com/80416766/211222756-76957959-6b36-47a7-b584-08780695b37c.png)
-
-
-### INFORMATION NODE
-
-This node a node takes the information taken from the first node and prints out the distance to goal and the average speed wiht a rate of 1 Hz, this frequence is parameter passed to this node through the launcher.
-
-#### Posvel_cb
+#### get_close_marker
 
 ``` python
-def posvel_cb(current):
+def get_close_marker():
 
-	global distance_x,distance_y,average_vel_x,average_vel_z,vel_x_list,vel_z_list
-	
-	dist_x=goal_x-current.x 
-	
-	dist_y=goal_y-current.y 
-	
-	distance_x=round(abs(dist_x),4)
-	
-	distance_y=round(abs(dist_y),4)
-	
-	vel_x_list.append(current.vel_x) 
-	
-	average_vel_x=sum(vel_x_list)/len(vel_x_list) 
-	
-	vel_z_list.append(current.vel_z) 
-	
-	average_vel_z=sum(vel_z_list)/len(vel_z_list)
+    global vision_id, camera_center, marker_center, marker_top_left, marker_bottom_left, pub, state, id_marker
+    
+    target = 175    # marker side to reach
+    
+    velocity = Twist()
+    
+    x_cord = marker_top_left[0] - marker_bottom_left[0]  # x coordinate of left corner of a marker
+    y_cord = marker_top_left[1] - marker_bottom_left[1]  # y coordinate of left corner of a marker
+    
+    side = np.sqrt(np.power(x_cord,2) + np.power(y_cord,2))  # computing the side
+    
+    linear_gain = 0.0025
+    angular_gain = 0.002
+          
+    angular_error = camera_center[0] - marker_center[0]  # angular error between camera center and marker center
+    linear_error = target - side                 # linear error between the robot and a marker        
+          
+    velocity.linear.x = linear_gain * linear_error    # computing the right linear velocity
+    velocity.angular.z = angular_gain * angular_error # computing the right angular velocity
+          
+    pub.publish(velocity)  # publish the velocity to /cmd_vel topic
+    
+    print("Reaching the target!")
+    
+    if(side >= target):   # marker side in the camera reached the target
+           print("Reached!")
+           if(id_marker != 15):  # if the id is not the last (15)
+              id_marker = id_list.pop()  # extract the id from the list
+              state = "search_marker"  # change the state
+           else:
+              rospy.signal_shutdown("exit")  # a way to close the node
 ```
+Function for getting close to the marker and extracting the next goal id
 
-This function is used for getting distance from current goal and velocity average.
+#### search_marker
 
-#### Goal_cb
+``` python
+def search_marker():
 
-```python
-def goal_cb(pos):
-	global goal_x,goal_y
-
-	goal_x=pos.goal.target_pose.pose.position.x	#x goal position
-	goal_y=pos.goal.target_pose.pose.position.y	#y goal position
+    global state, pub, vision_id, id_marker
+          
+    velocity = Twist()
+    
+    if(id_marker != vision_id):    # the id marker is not the desired one
+         
+         print("Looking for the target!")
+         
+         velocity.angular.z = -0.5   # getting on rotating
+    
+         pub.publish(velocity)
+         
+    else:                   # the id marker is the desired one
+         
+         velocity.angular.z = 0     # stopping all velocities
+         velocity.linear.x = 0  
+         pub.publish(velocity)
+         
+         state = "get_close_marker"   # changing state
 ```
-This Function is useful for getting current goal.
-
-#### Output
-
-![info_console](https://user-images.githubusercontent.com/80416766/211173208-e70b2e37-eec2-4620-828d-3e0900c6ea8b.png)
+Function for allowing the robot to rotate until it finds the desired id marker.
 
 ## Flowchart
 
