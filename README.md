@@ -1,6 +1,4 @@
-# Experimental-Robotics - Assignment-1
-
-# Assignment-2
+# Experimental_Robotics - Assignment_1
 
 ## IMPORTANT 
 
@@ -25,11 +23,11 @@ If you are using the professor's Docker Image, add the line ```source /opt/ros/n
 
 You need to use Git. Run: ```sudo apt-get install git```
 
-Then run on your shell: ```git clone https://github.com/luk1897/Research_Track_1-Assignment-2```
+Then run on your shell: ```git clone https://github.com/luk1897/Experimental_Robotics-Assignment_1```
 
 Then install xterm because it is used to check what the robot is doing. Run ```sudo apt-get install xterm```
 
-Finally, you need to have aruco in your pc. Run ```git clone ```
+Finally, you need to have aruco in your pc. Run ```git clone https://github.com/CarmineD8/aruco_ros ```
 
 ### Run
 
@@ -37,10 +35,9 @@ Run this command on your shell: ```roslaunch assignment_1 assignment1.launch```
 
 ## Environment
 
-![environment rt1](https://user-images.githubusercontent.com/80416766/211173168-53474ace-d147-4405-bc21-82d217790b63.png)
+![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a2aa6bef-f815-477f-9023-456ed6b273f9)
 
-
-This is the entire environment in which I worked.
+This is the entire environment in which we worked.
 
 ## Nodes
 
