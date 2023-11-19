@@ -109,34 +109,7 @@ def img_cb(img_msg):
     	print("None")
 ```
 
-Function for making the image usable with aruco, computing and sending all the informations regarding the markers (id, center, corners).
-
-#### Position
-
-``` python
-def position():
-	
-	print("Insert x value: " )
-	
-	x=float(input())
-	
-	print("Insert y value: " )
-	
-	y=float(input())
-	
-	print("\nGoal: (%s,%s) "%(x,y))
-	print("\n")
-	
-	goal=PlanningGoal()  #initialising goal to the message PlanningGoal
-	
-	goal.target_pose.pose.position.x=x #set the x goal position
-		
-	goal.target_pose.pose.position.y=y #set the y goal position
-	
-	return goal
-```
-
-The function is useful for getting goal coordinates.
+Function for making the image usable with aruco, computing and sending all the informations regarding the markers (id, center and corners).
 
 
 ### Controller NODE
