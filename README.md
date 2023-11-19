@@ -207,6 +207,11 @@ Function for allowing the robot to rotate until it finds the desired id marker.
 
 ![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a7a052b5-3889-42d9-8acd-7c1102a4a1d7)
 
+## Difference between simulation and real robot
+
+## Results
+
+https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/d64546dd-3616-4faf-9d98-949b5a38abfb
 
 
 ##  Possibile improvements
