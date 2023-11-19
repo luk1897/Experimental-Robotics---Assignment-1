@@ -112,7 +112,7 @@ def img_cb(img_msg):
 Function for making the image usable with aruco, computing and sending all the informations regarding the markers (id, center and corners).
 
 
-### Controller NODE
+### CONTROLLER NODE
 
 This node allows the robot to turn in search of the desired marker and then to reach it. The logic is implemented in the main.
 
