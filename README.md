@@ -133,7 +133,7 @@ def vision_cb(vision_msg):
 	    marker_bottom_left = vision_msg.marker_bottom_left
 	    marker_bottom_right = vision_msg.marker_bottom_right
 ``` 
-Function for getting information (id, camera center, marker center and corners) regarding markers from vision node.
+Function for getting information (id, camera center, marker center and corners) regarding markers from vision node through /info_vision topic.
 
 #### get_close_marker
 
