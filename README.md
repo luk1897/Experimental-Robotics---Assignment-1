@@ -3,7 +3,7 @@
 ## IMPORTANT 
 
 In the simulation, the camera frame the side of the marker reached a maximum of 175 pixels because, by increasing the threshold, the camera was unable to detect the marker.
-In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.
+Finally, after testing the code in simulation, our goal was to run it on the real robot. In the real robot, on the other hand, we set the threshold to 185, so that the robot is a little closer to the marker and the simulation and real robot are almost equal.
 
 ## Project Goal
 
@@ -37,68 +37,79 @@ This is the entire environment in which we worked.
 
 ## Nodes
 
-### VISION NODE
+### ROBOT VISION NODE
 
-This node allows the robot to turn in search of the desired marker and then to reach it.
+This ROS node is used for getting the informations (height and width) regarding the camera (through /camera/color/camera_info topic) and the informations (id, center and corners) regarding the markers (through /camera/color/image_raw topic). In the main we set the subscribers.
 
-#### Publish_function
+#### Camera_cb
 
 ```python
-def publish_function(od):
+def camera_cb(camera_msg):
 
-	pub=rospy.Publisher('/posvel',Posvel,queue_size=10) # publisher on /posvel topic
-	
-	info=Posvel() 
-	
-	info.x=od.pose.pose.position.x
-	
-	info.y=od.pose.pose.position.y 
-	
-	info.vel_x=od.twist.twist.linear.x 
-	
-	info.vel_z=od.twist.twist.angular.z 
-	
-	pub.publish(info)
+    global cam_center_x, cam_center_y
+
+    cam_center_x = camera_msg.width / 2  # computing the x coordinate of the center
+    cam_center_y = camera_msg.height / 2   # computing the y coordinate of the center
   ```
   
-  This function for publish Posvel custom message (created with odometry information) on /posvel topic.
+  Function for computing the camera center.
   
-  #### Menu
+  #### Img_cb
   
   ```python
-  def menu(client):
+ 
+def img_cb(img_msg):
 
-	print("MENU\n")
-	print("1. Choose your goal\n")
-	print("2. Cancel your goal\n")
-	print("3. Number of reached and cancelled goals\n")
-	print("4. Exit\n")
+    global cam_center_x, cam_center_y, pub
+
+    bridge = CvBridge()  
+    image = bridge.imgmsg_to_cv2(img_msg, desired_encoding='bgr8') #bridge for transforming the image
+
+    aruco_dict = aruco.Dictionary_get(aruco.DICT_ARUCO_ORIGINAL) # right dictionary
+    parameters = aruco.DetectorParameters_create()           # parameters useful for aruco
+    
+    corners, ids, _ = aruco.detectMarkers(image, aruco_dict, parameters=parameters) # getting corners and id
+    
+
+    if ids is not None:
+    
+    
+        marker_center_x = (corners[0][0][0][0]+ corners[0][0][1][0]+ corners[0][0][2][0]+ corners[0][0][3][0]) / 4  # compute x coordinate center of a marker doing the average between all the corners
+        marker_center_y = (corners[0][0][0][1]+ corners[0][0][1][1]+ corners[0][0][2][1]+ corners[0][0][3][1]) / 4   # compute y coordinate center of a marker doing the average between all the corners
+        
+        camera_center = [cam_center_x, cam_center_y]     
+        marker_center = [marker_center_x, marker_center_y]
+        
+        #all the four corners
+        
+        top_right = [corners[0][0][0][0], corners[0][0][0][1]] 
+        top_left = [corners[0][0][1][0], corners[0][0][1][1]]
+        bottom_left = [corners[0][0][2][0], corners[0][0][2][1]]
+        bottom_right = [corners[0][0][3][0], corners[0][0][3][1]]
+        
+        
+        info_msg = RobotVision()
+        
+        # sending all the informations to info_vision
+        
+        info_msg.id = int(ids[0][0])
+        info_msg.camera_center = camera_center
+        info_msg.marker_center = marker_center
+        info_msg.marker_top_right = top_right
+        info_msg.marker_top_left = top_left
+        info_msg.marker_bottom_left = bottom_left
+        info_msg.marker_bottom_right = bottom_right
+        
+        print(ids[0][0])
 	
-	print("Insert your choice: \n")
-	choice=int(input())
-	
-	if(choice == 1):
-		goal = position() #getting goal coordinates
-		client.send_goal(goal) #sending goal to the server
-		print("Goal sent!\n")
-		
-	elif(choice == 2):
-		client.cancel_goal() #cancelling goal
-		print("\nGoal cancelled!\n")
-		
-	elif(choice == 3):
-		rospy.wait_for_service('counter') #synchronizing with service node
-		
-		service=rospy.ServiceProxy('counter',Counter) #request to the service node
-		
-		counter=service("ok") # used a message "ok" to avoid any problem with empty message
-	
-	elif(choice == 4):
-		print("\nExiting!\n")
-		exit()
+        pub.publish(info_msg)
+        
+        
+    else:
+    	print("None")
 ```
 
-The function for choosing the goal, cancelling it and showing the number of reached and cancelled goals.
+Function for making the image usable with aruco, computing and sending all the informations regarding the markers (id, center, corners).
 
 #### Position
 
