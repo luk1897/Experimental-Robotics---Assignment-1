@@ -1,0 +1,5 @@
+uint8 SEND_SEARCH_ID = 0
+uint8 LOOKING_FOR_ID = 1
+uint8 SEND_REACH_ID = 2
+uint8 GETTING_CLOSE = 3
+uint8 FINISH = 4

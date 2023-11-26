@@ -1,0 +1,11 @@
+# goal definition
+int32 id
+float32 marker_side_th
+---
+# result
+bool success
+---
+# feedback
+# current id seen by the camera
+int32 id
+float32 marker_side

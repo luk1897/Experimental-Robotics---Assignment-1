@@ -1,0 +1,9 @@
+# goal definition
+int32 id
+---
+# result
+bool success
+---
+# feedback
+# current id seen by the camera
+int32[] ids
