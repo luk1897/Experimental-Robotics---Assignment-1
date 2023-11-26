@@ -228,7 +228,9 @@ https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/e0
 
 ##  Possibile improvements
 	
-	
+* We could add an obstacle avoidance, because right now, if we put obstacles in the robot's path, the robot would not be able to go any further.
+* If the robot loses sight of the marker, it starts to walk around without knowledge. This should be improved.
+* If the robot does not find the marker, it will continue to rotate indefinitely. This could be managed by placing a timer that, once expired, terminates the node or makes the robot move so that it is observed from a more favourable position.
 	
 	
 	
