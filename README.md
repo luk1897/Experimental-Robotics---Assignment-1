@@ -211,7 +211,8 @@ This message is fundamental to share the informations regarding the camera and t
 
 ## Flowchart
 
-![flow_control drawio](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a108cb6e-666a-405a-a787-72d616bd664e)
+
+![flow_control drawio(1)](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/eb96ec16-d2ad-42b1-a143-f8e7ebda8946)
 
 
 ## Outline of the assignment and the whole environment
