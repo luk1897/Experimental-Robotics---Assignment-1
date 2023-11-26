@@ -201,6 +201,9 @@ Function for allowing the robot to rotate until it finds the desired id marker.
 
 ## Flowchart
 
+![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/1ddc3e5d-087e-483b-a93d-f4794d4d725a)
+
+
 ## Outline of the assignment and the whole environment
 
 ![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a7a052b5-3889-42d9-8acd-7c1102a4a1d7)
@@ -213,6 +216,10 @@ Function for allowing the robot to rotate until it finds the desired id marker.
 ## Results
 
 https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/d64546dd-3616-4faf-9d98-949b5a38abfb
+
+
+Uploading rosbot_lab.mp4…
+
 
 
 ##  Possibile improvements
