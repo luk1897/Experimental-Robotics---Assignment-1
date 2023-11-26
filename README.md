@@ -211,6 +211,9 @@ This message is fundamental to share the informations regarding the camera and t
 
 ## Flowchart
 
+![flow_control drawio](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a108cb6e-666a-405a-a787-72d616bd664e)
+
+
 ## Outline of the assignment and the whole environment
 
 ![immagine](https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/a7a052b5-3889-42d9-8acd-7c1102a4a1d7)
@@ -224,6 +227,10 @@ This message is fundamental to share the informations regarding the camera and t
 ## Results
 
 https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/d64546dd-3616-4faf-9d98-949b5a38abfb
+
+
+
+https://github.com/luk1897/Experimental_Robotics-Assignment_1/assets/80416766/6a34eec2-02a1-494d-a738-d59e9b210a53
 
 
 ##  Possibile improvements
