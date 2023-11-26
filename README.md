@@ -81,7 +81,7 @@ https://github.com/davideCaligola/experimentalRoboticsLab_assignment1/assets/114
 # Architecture
 To manage the rosbot in a flexible way, an architecture based on an action server has been developed and three nodes have been developed:
 - [logic.py](#logicpy-source)
-- [contro_act_server.py](#control_act_serverpy-source)
+- [control_act_server.py](#control_act_serverpy-source)
 - [robot_vision.py](#robot_visionpy-source)  
 
 The developed nodes, the Gazebo and RViz environment are organized as shown in the following `rqt_graph`:  
